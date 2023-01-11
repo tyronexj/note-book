@@ -293,7 +293,9 @@ True
 Unicode 标准提供了一整套数据库，它不仅提供了字符到名字的映射，还通过 metadata 提供了字符的属性。
 例如，一个字符是否可打印，是否是字母，是否是十进制数字，或者是否是其他数字符号。这就是`str`方法`isalpha`，`isprintable`，`isdecimal`和`isnumeric`如何工作的。`str.casefold`也使用 Unicode 表中的信息。
 
-最后，我们来读一段有趣的代码，它可以查找到所有关于 cat 和 smiling 的 emoji。
+最后，我们来读两段关于 Unicode 数据库的有趣的代码。
+
+第一段，它可以查找到所有关于 cat 和 smiling 的 emoji。
 
 ```python
 import sys
@@ -322,7 +324,42 @@ U+1F63A	😺	SMILING CAT FACE WITH OPEN MOUTH
 U+1F63B	😻	SMILING CAT FACE WITH HEART-SHAPED EYES
 ```
 
+第二段，它是一个关于 metadata 的例子
+
+```
+import unicodedata
+import re
+
+re_digit = re.compile(r"\d")
+sample = "1\xbc\xb2\u0969\u136b\u216b\u2466\u2480\u3285"
+for char in sample:
+    print(
+        f"U+{ord(char):04x}",
+        char.center(6),
+        "re_dig" if re_digit.match(char) else "-",
+        "isdig" if char.isdigit() else "-",
+        "isnum" if char.isnumeric() else "-",
+        f"{unicodedata.numeric(char):5.2f}",
+        unicodedata.name(char),
+        sep="\t",
+    )
+```
+
+输出是
+
+```python
+U+0031,   1   , re_dig, isdig, isnum,  1.00, DIGIT ONE
+U+00bc,   ¼   , ------, -----, isnum,  0.25, VULGAR FRACTION ONE QUARTER
+U+00b2,   ²   , ------, isdig, isnum,  2.00, SUPERSCRIPT TWO
+U+0969,   ३   , re_dig, isdig, isnum,  3.00, DEVANAGARI DIGIT THREE
+U+136b,   ፫   , ------, isdig, isnum,  3.00, ETHIOPIC DIGIT THREE
+U+216b,   Ⅻ  , ------, -----, isnum, 12.00, ROMAN NUMERAL TWELVE
+U+2466,   ⑦   , ------, isdig, isnum,  7.00, CIRCLED DIGIT SEVEN
+U+2480,   ⒀   , ------, -----, isnum, 13.00, PARENTHESIZED NUMBER THIRTEEN
+U+3285,   ㊅   , ------, -----, isnum,  6.00, CIRCLED IDEOGRAPH SIX
+```
+
 ## 参考文献
 
-[1]: <Fluent Python, Second Edition>
-[2]: https://docs.python.org/3/howto/unicode.html
+1. Fluent Python, Second Edition
+1. https://docs.python.org/3/howto/unicode.html
