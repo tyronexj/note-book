@@ -321,3 +321,8 @@ U+1F638	😸	GRINNING CAT FACE WITH SMILING EYES
 U+1F63A	😺	SMILING CAT FACE WITH OPEN MOUTH
 U+1F63B	😻	SMILING CAT FACE WITH HEART-SHAPED EYES
 ```
+
+## 参考文献
+
+[1]: <Fluent Python, Second Edition>
+[2]: https://docs.python.org/3/howto/unicode.html
