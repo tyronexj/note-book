@@ -366,12 +366,32 @@ response = openai.Image.create(
 )
 ```
 
-输出：
-![avatar](img/img-6Be2o2FbBAc7IWnCEBN9Ndxg.png)
+输出：这也太可爱了。
+![哈士奇](img/img-6Be2o2FbBAc7IWnCEBN9Ndxg.png)
+
+再来个复杂一点的例子。
+
+```
+prompt="沉舟侧畔千帆过，病树前头万木春。"
+```
+
+输出：它好像忽略了前半句！
+![病树前头万木春](img/img-DwVnqOuxKgO2ty6oIvqYrEeJ.png)
+
+再来一个单独的"沉舟侧畔千帆过"，这个笑死我了！
+![沉舟侧畔千帆过](img/img-3z9rOzsuNJ3iOamEwa7tKz1j.png)
 
 ### 图像编辑
 
 ### 图像变化
+
+### 其他
+
+关于图像，另外几个 AI 也做得不错。
+
+https://github.com/AUTOMATIC1111/stable-diffusion-webui
+
+https://huggingface.co/Linaqruf/anything-v3.0
 
 ## 微调
 
